@@ -1,7 +1,9 @@
 const express = require('express');
 const users = require('./MOCK_DATA.json');
+const fs = require('fs');
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 
 const PORT = 10000;
 
@@ -27,6 +29,18 @@ app.get('/api/users/:id', (req, res) => {
     return res.json(user);
 })
 
+// add a user
+app.post('/api/users/create', (req, res) => {
+    const body = req.body;
+    users.push({ ...body, id: users.length + 1 });
+    fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err, data) => {
+        return res.status(201).json({
+            message: 'User added successfully',
+            id: users.length
+        })
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-});
+}); 
