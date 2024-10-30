@@ -1,0 +1,14 @@
+{
+  "name": "node_apis",
+  "version": "1.0.0",
+  "description": "Creating apis for testing",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
